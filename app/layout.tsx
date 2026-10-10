@@ -1,46 +1,8 @@
 import type { Metadata } from "next";
-import {
-  Plus_Jakarta_Sans,
-  Cormorant_Garamond,
-  JetBrains_Mono,
-} from "next/font/google";
 import "./globals.css";
 import { brand } from "@/lib/content";
 import { PageShell } from "@/components/shell/PageShell";
 import { Grain } from "@/components/shell/Grain";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  variable: "--font-plus-jakarta",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin", "latin-ext"],
-  display: "swap",
-  variable: "--font-cormorant",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-jetbrains",
-  weight: ["400", "500"],
-});
-
-// Self-host Tiro Devanagari via Google CSS.
-// To stay compliant with `next/font` we use a Devanagari serif here for the brand lockup:
-//   Noto Serif Devanagari via next/font, used as the heritage Hindi display face.
-import { Noto_Serif_Devanagari } from "next/font/google";
-const notoSerifDevanagari = Noto_Serif_Devanagari({
-  subsets: ["devanagari"],
-  display: "swap",
-  variable: "--font-devanagari",
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rajmahalroorkee.in"),
@@ -77,10 +39,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      className={`${plusJakarta.variable} ${cormorant.variable} ${jetbrainsMono.variable} ${notoSerifDevanagari.variable}`}
-    >
+    <html lang="en">
+      <head>
+        {/* Preconnect to Google Fonts so the first paint does not pay the handshake cost. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+        {/* Single request fetches all four families. */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+Devanagari:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
         className="min-h-[100dvh] bg-parchment text-ink antialiased overflow-x-clip"
         suppressHydrationWarning

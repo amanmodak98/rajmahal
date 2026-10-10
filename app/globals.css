@@ -29,11 +29,11 @@
   --color-patina: #1F3B2E;
   --color-patina-soft: #2D5440;
 
-  /* Type families (CSS variables consumed by font classes below) */
-  --font-display-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  /* Type families - Google Fonts loaded via <link> in app/layout.tsx */
+  --font-display-serif: "Cormorant Garamond", ui-serif, Georgia, "Times New Roman", serif;
   --font-display-hindi: "Noto Serif Devanagari", "Tiro Devanagari Hindi", serif;
-  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
 
   --radius-card: 28px;
   --radius-pill: 9999px;
@@ -221,30 +221,17 @@ html, body {
 .border-gold-hairline { border-color: var(--border-gold-hair); }
 .border-cream-line { border-color: var(--border-cream); }
 
-/* The deep-ink text class we use throughout - warm near-black */
 .text-ink { color: var(--color-ink-soft); }
 
-/* Section helpers */
-.section-cream {
-  background-color: var(--bg-elevated);
-  position: relative;
-}
-.section-deep {
-  background-color: var(--bg-deep);
-  position: relative;
-}
-.section-night {
-  background-color: var(--bg-night);
-  color: var(--color-cream);
-}
+.section-cream { background-color: var(--bg-elevated); position: relative; }
+.section-deep { background-color: var(--bg-deep); position: relative; }
+.section-night { background-color: var(--bg-night); color: var(--color-cream); }
 
-/* Subtle paper warmth */
 .noise-paper {
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.36 0 0 0 0 0.10 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
   background-size: 240px 240px;
 }
 
-/* Warm radial corner light - for hero sections */
 .radial-warm {
   background:
     radial-gradient(circle at 12% 8%, rgba(226, 192, 113, 0.16) 0%, transparent 30%),
