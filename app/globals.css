@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+/* ============================================================
+   RAJ MAHAL ROORKEE - DESIGN TOKENS
+   Mewar / Royal Rajasthani heritage. Light mode default.
+   Warm parchment + antique gold + deep crimson, dark panels only where earned.
+   ============================================================ */
+
+@theme {
+  /* Page backgrounds - light, parchment warm */
+  --color-parchment: #F4ECDC;
+  --color-parchment-soft: #E8DCC0;
+  --color-cream: #FAF6EC;
+
+  /* Deep darks - reserved for ink-soft footer bands / dark inset sections */
+  --color-ink: #0E0908;
+  --color-ink-soft: #1B1410;
+  --color-marble: #1B1410;
+
+  /* Brand accents */
+  --color-ember: #8A1A1A;        /* deep crimson - royal marquee */
+  --color-ember-soft: #5C0F12;
+  --color-gold: #C29A4B;          /* antique gold */
+  --color-gold-deep: #9A7530;     /* legible gold for text on parchment */
+  --color-gold-bright: #E2C071;
+  --color-gold-soft: #8C6E33;
+
+  /* Verdigris - deep green for banquet/grounds pages */
+  --color-patina: #1F3B2E;
+  --color-patina-soft: #2D5440;
+
+  /* Type families (CSS variables consumed by font classes below) */
+  --font-display-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-display-hindi: "Noto Serif Devanagari", "Tiro Devanagari Hindi", serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-card: 28px;
+  --radius-pill: 9999px;
+  --radius-input: 16px;
+
+  --shadow-vanta: 0 30px 80px -20px rgba(14, 9, 8, 0.18);
+  --shadow-soft: 0 18px 60px -12px rgba(14, 9, 8, 0.12);
+  --shadow-warm: 0 14px 44px -14px rgba(120, 80, 0, 0.18);
+}
+
+/* ============================================================
+   BASE - light parchment default, ink-soft text
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* Semantic surfaces */
+  --bg-page: var(--color-parchment);
+  --bg-elevated: var(--color-cream);
+  --bg-elevated-warm: #FBF4DC;
+  --bg-deep: var(--color-parchment-soft);
+  --bg-night: var(--color-ink-soft);
+
+  --fg-default: var(--color-ink-soft);
+  --fg-muted: rgba(27, 20, 16, 0.65);
+  --fg-quiet: rgba(27, 20, 16, 0.42);
+  --fg-faint: rgba(27, 20, 16, 0.28);
+  --fg-inverse: var(--color-cream);
+
+  --border-gold: rgba(140, 110, 51, 0.32);
+  --border-gold-hair: rgba(140, 110, 51, 0.18);
+  --border-cream: rgba(27, 20, 16, 0.10);
+}
+
+html, body {
+  background-color: var(--bg-page);
+  color: var(--fg-default);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-ink-soft);
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--color-parchment); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-soft); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-gold); }
+
+/* ============================================================
+   TYPOGRAPHY TIERS
+   ============================================================ */
+.font-display-serif { font-family: var(--font-display-serif); font-feature-settings: "liga", "dlig", "kern"; }
+.font-display-hindi { font-family: var(--font-display-hindi); font-feature-settings: "kern", "akhn", "blwf"; }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); font-feature-settings: "tnum", "zero"; }
+
+.lede {
+  font-family: var(--font-display-serif);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.lede-roman {
+  font-family: var(--font-display-serif);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+}
+
+/* ============================================================
+   JALI PATTERN - Mughal octagon + star lattice (SVG inline)
+   ============================================================ */
+.jali {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23C29A4B' stroke-width='0.5' opacity='0.55'><path d='M40 4 L52 16 L52 28 L60 36 L52 44 L52 56 L40 68 L28 56 L28 44 L20 36 L28 28 L28 16 Z'/><path d='M40 0 L48 12 L40 24 L32 12 Z'/><path d='M40 56 L48 68 L40 80 L32 68 Z'/><circle cx='40' cy='40' r='2.5'/><path d='M0 40 L12 48 L0 56 L12 56 Z'/><path d='M80 40 L68 48 L80 56 L68 56 Z'/><path d='M40 0 L48 12 L60 12 L48 24 L60 24 L52 32 L52 16'/></g></svg>");
+  background-size: 80px 80px;
+}
+.jali-soft {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23A87932' stroke-width='0.45' opacity='0.25'><path d='M40 4 L52 16 L52 28 L60 36 L52 44 L52 56 L40 68 L28 56 L28 44 L20 36 L28 28 L28 16 Z'/><circle cx='40' cy='40' r='2'/></g></svg>");
+  background-size: 80px 80px;
+}
+.jali-paper {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23A87932' stroke-width='0.45' opacity='0.30'><path d='M40 4 L52 16 L52 28 L60 36 L52 44 L52 56 L40 68 L28 56 L28 44 L20 36 L28 28 L28 16 Z'/><circle cx='40' cy='40' r='2'/></g></svg>");
+  background-size: 80px 80px;
+}
+.jali-night {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='%23E2C071' stroke-width='0.5' opacity='0.18'><path d='M40 4 L52 16 L52 28 L60 36 L52 44 L52 56 L40 68 L28 56 L28 44 L20 36 L28 28 L28 16 Z'/><circle cx='40' cy='40' r='2'/></g></svg>");
+  background-size: 80px 80px;
+}
+
+/* ============================================================
+   GRAIN + RADIAL VIGNETTE (light)
+   ============================================================ */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.78 0 0 0 0 0.66 0 0 0 0 0.36 0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  mix-blend-mode: multiply;
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 30%, rgba(14, 9, 8, 0.30) 100%);
+}
+.vignette-light {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(244, 236, 220, 0.55) 100%);
+}
+.vignette-warm {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(120, 80, 0, 0.32) 100%);
+}
+
+/* ============================================================
+   IMAGE TREATMENT - cinematic tint
+   ============================================================ */
+.cinematic {
+  filter: saturate(0.92) contrast(1.03);
+}
+.cinematic-deep {
+  filter: saturate(0.78) contrast(1.06) brightness(0.92);
+}
+
+/* ============================================================
+   SCROLLBAR HIDE
+   ============================================================ */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ============================================================
+   FOCUS RING
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid var(--color-gold-deep);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   REDUCED MOTION OVERRIDES
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   SEMANTIC UTILITIES (light theme)
+   ============================================================ */
+.bg-parchment { background-color: var(--bg-page); }
+.bg-cream { background-color: var(--bg-elevated); }
+.bg-cream-warm { background-color: var(--bg-elevated-warm); }
+.bg-deep { background-color: var(--bg-deep); }
+.bg-night { background-color: var(--bg-night); }
+
+.text-parchment { color: var(--bg-page); }
+.text-ink-default { color: var(--fg-default); }
+.text-ink-muted { color: var(--fg-muted); }
+.text-ink-quiet { color: var(--fg-quiet); }
+.text-ink-faint { color: var(--fg-faint); }
+.text-gold-deep { color: var(--color-gold-deep); }
+.text-gold-bright { color: var(--color-gold-bright); }
+
+.border-gold-rule { border-color: var(--border-gold); }
+.border-gold-hairline { border-color: var(--border-gold-hair); }
+.border-cream-line { border-color: var(--border-cream); }
+
+/* The deep-ink text class we use throughout - warm near-black */
+.text-ink { color: var(--color-ink-soft); }
+
+/* Section helpers */
+.section-cream {
+  background-color: var(--bg-elevated);
+  position: relative;
+}
+.section-deep {
+  background-color: var(--bg-deep);
+  position: relative;
+}
+.section-night {
+  background-color: var(--bg-night);
+  color: var(--color-cream);
+}
+
+/* Subtle paper warmth */
+.noise-paper {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.36 0 0 0 0 0.10 0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23p)'/></svg>");
+  background-size: 240px 240px;
+}
+
+/* Warm radial corner light - for hero sections */
+.radial-warm {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(226, 192, 113, 0.16) 0%, transparent 30%),
+    radial-gradient(circle at 88% 96%, rgba(194, 154, 75, 0.18) 0%, transparent 35%),
+    var(--bg-page);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 60px rgba(194, 154, 75, 0.35);
+}
