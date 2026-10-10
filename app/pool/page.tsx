@@ -19,7 +19,7 @@ export default function PoolPage() {
       <section className="relative min-h-[90dvh] flex items-end overflow-hidden pt-24 md:pt-32">
         <div className="absolute inset-0">
           <Image
-            src="https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=2400&auto=format&fit=crop&q=85"
+            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=2400&auto=format&fit=crop&q=85"
             alt="Rooftop swimming pool at Hotel Rajmahal"
             fill
             priority
@@ -85,7 +85,7 @@ export default function PoolPage() {
             </p>
           </>
         }
-        image="https://images.unsplash.com/photo-1572331165260-3596d04ae3ef?w=1800&auto=format&fit=crop&q=85"
+        image="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&auto=format&fit=crop&q=85"
         imageAlt="Rooftop pool at sunset"
         pill={
           <div className="flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.22em] text-gold-deep">

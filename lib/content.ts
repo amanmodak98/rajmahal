@@ -79,7 +79,7 @@ export const rooms = [
       "Selected units with balcony",
     ],
     rate: "from 1,900 / night",
-    image: "https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1600&auto=format&fit=crop&q=85",
   },
   {
     slug: "family",
@@ -115,7 +115,7 @@ export const rooms = [
       "Complimentary breakfast for two",
     ],
     rate: "from 5,400 / night",
-    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d36804?w=1600&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1600&auto=format&fit=crop&q=85",
   },
 ] as const;
 
@@ -211,7 +211,7 @@ export const events = [
     setting: "Outdoor, lantern-lit, three days",
     inclusions: ["Live tandoor bar", "Eight regional cuisines", "Folk performance", "Family-run hospitality"],
     startingPrice: "from 950 / plate",
-    image: "https://images.unsplash.com/photo-1530103862679-de8e9efd7f57?w=1600&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1600&auto=format&fit=crop&q=85",
   },
   {
     slug: "private",
@@ -231,7 +231,7 @@ export const amenities = [
     name: "Rooftop swimming pool",
     sanskrit: "Jal Mandir",
     body: "The rooftop pool is the hotel's most photographed feature, often named as a Roorkee highlight. Open 06:00 to 21:00. Lined with cabanas in summer, with warmers in winter.",
-    image: "https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=1600&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600&auto=format&fit=crop&q=85",
   },
   {
     name: "Fitness centre",
@@ -283,7 +283,7 @@ export const legacy = [
     year: "2022",
     title: "The rooftop swimming pool opens",
     body: "The single amenity most asked after: a rooftop swimming pool with cabanas and winter warmers. It is the hotel's most-photographed feature.",
-    image: "https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=1200&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&auto=format&fit=crop&q=85",
   },
   {
     year: "today",
@@ -329,7 +329,7 @@ export const journal = [
     readMinutes: 5,
     title: "On being a highway hotel",
     excerpt: "We sit at kilometre fifty-eight of the Delhi-Dehradun run. Six hundred metres from Haridwar's old toll. The trade is travellers who do not stop unless the sign looks honest.",
-    image: "https://images.unsplash.com/photo-1473445735015-694cb38a1fc7?w=1200&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1200&auto=format&fit=crop&q=85",
     body: "Highway hotels get a bad name in this country. We are trying to do the opposite. We run the kitchen round the clock. We keep a driver who knows the wash. We post the night's tariff on the sign so the eye doesn't have to ask. Highway hotels live or die by the first two minutes. We have spent twenty-seven years on those two minutes.",
   },
   {
@@ -338,7 +338,7 @@ export const journal = [
     readMinutes: 4,
     title: "The rooftop pool in January",
     excerpt: "The pool at the top of the hotel runs at thirty degrees in winter. The warmers kick in at sunset. The view across to the foothills is best on the cold mornings.",
-    image: "https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=1200&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1200&auto=format&fit=crop&q=85",
     body: "Most rooftop pools in North India close from November to February. Ours does not. We hold the water at thirty. The changeover is small, the result is not. In January we are the only hotel on the corridor with a usable pool. The wedding hosts who book us now understand that.",
   },
   {
@@ -356,7 +356,7 @@ export const journal = [
     readMinutes: 5,
     title: "Roorkee on a train, in the monsoon",
     excerpt: "The mail train from Old Delhi stops twice a day in Roorkee. We hold a car at the platform for guests who ask. We have not charged for this in twenty-seven years.",
-    image: "https://images.unsplash.com/photo-1473445735015-694cb38a1fc7?w=1200&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1200&auto=format&fit=crop&q=85",
     body: "We are twelve kilometres from the railway station. The car we hold is free. The driver is paid. The concierge knows the arrival time by heart. This is the kind of service the brochures do not capture. We mention it here, quietly.",
   },
 ] as const;
@@ -366,21 +366,21 @@ export const gallery = [
   { id: 1, category: "kitchen", caption: "The Penthouse line at sunset", src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&auto=format&fit=crop&q=85" },
   { id: 2, category: "kitchen", caption: "Saffron stock, slow reduction", src: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=1400&auto=format&fit=crop&q=85" },
   { id: 3, category: "kitchen", caption: "Tandoor no. 4, midnight service", src: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1400&auto=format&fit=crop&q=85" },
-  { id: 4, category: "rooms", caption: "Heritage Suite, evening", src: "https://images.unsplash.com/photo-1631049307264-da0ec9d36804?w=1400&auto=format&fit=crop&q=85" },
+  { id: 4, category: "rooms", caption: "Heritage Suite, evening", src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1400&auto=format&fit=crop&q=85" },
   { id: 5, category: "rooms", caption: "Family Room, bedside", src: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1400&auto=format&fit=crop&q=85" },
   { id: 6, category: "rooms", caption: "Executive Room, morning light", src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1400&auto=format&fit=crop&q=85" },
   { id: 7, category: "weddings", caption: "Main banquet lawn", src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=1400&auto=format&fit=crop&q=85" },
   { id: 8, category: "weddings", caption: "Royal entry, ceremonial", src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&auto=format&fit=crop&q=85" },
   { id: 9, category: "weddings", caption: "Courtyard, candle-lit", src: "https://images.unsplash.com/photo-1530023367847-a683933f4172?w=1400&auto=format&fit=crop&q=85" },
   { id: 10, category: "weddings", caption: "Mehendi, mirror-work", src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=1400&auto=format&fit=crop&q=85" },
-  { id: 11, category: "pool", caption: "Rooftop, summer afternoon", src: "https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=1400&auto=format&fit=crop&q=85" },
-  { id: 12, category: "pool", caption: "Rooftop, winter sunset", src: "https://images.unsplash.com/photo-1572331165260-3596d04ae3ef?w=1400&auto=format&fit=crop&q=85" },
+  { id: 11, category: "pool", caption: "Rooftop, summer afternoon", src: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&auto=format&fit=crop&q=85" },
+  { id: 12, category: "pool", caption: "Rooftop, winter sunset", src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400&auto=format&fit=crop&q=85" },
   { id: 13, category: "property", caption: "Frontage at sunrise", src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1400&auto=format&fit=crop&q=85" },
   { id: 14, category: "property", caption: "Verandah at dusk", src: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?w=1400&auto=format&fit=crop&q=85" },
   { id: 15, category: "property", caption: "The Penthouse entrance", src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1400&auto=format&fit=crop&q=85" },
-  { id: 16, category: "roorkee", caption: "Highway NH-73, morning", src: "https://images.unsplash.com/photo-1473445735015-694cb38a1fc7?w=1400&auto=format&fit=crop&q=85" },
+  { id: 16, category: "roorkee", caption: "Highway NH-73, morning", src: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1400&auto=format&fit=crop&q=85" },
   { id: 17, category: "roorkee", caption: "Old bus stand, monsoon", src: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1400&auto=format&fit=crop&q=85" },
-  { id: 18, category: "roorkee", caption: "Ganges, twelve kilometres east", src: "https://images.unsplash.com/photo-1561363846-12a7c5b5d8a7?w=1400&auto=format&fit=crop&q=85" },
+  { id: 18, category: "roorkee", caption: "Ganges, twelve kilometres east", src: "https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=1400&auto=format&fit=crop&q=85" },
 ] as const;
 
 /* ----- Site experience offer (small-hours list) ----- */
@@ -401,7 +401,7 @@ export const experiences = [
     title: "Pool lap before breakfast",
     sanskrit: "Snaan",
     body: "The pool opens at six. The lane line stays. Swim, then the four-bowl thali at the Penthouse.",
-    image: "https://images.unsplash.com/photo-1540541338227-384006f1a5ed?w=1400&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1400&auto=format&fit=crop&q=85",
   },
   {
     title: "Sunset on the rooftop",
@@ -413,7 +413,7 @@ export const experiences = [
     title: "A slow walk to Haridwar",
     sanskrit: "Yatra",
     body: "Twelve kilometres to Har ki Pauri. The hotel holds a car on call. The driver knows the ghat. He has run this road for nineteen years.",
-    image: "https://images.unsplash.com/photo-1561363846-12a7c5b5d8a7?w=1400&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=1400&auto=format&fit=crop&q=85",
   },
   {
     title: "A long dinner in the courtyard",

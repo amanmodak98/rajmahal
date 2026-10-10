@@ -16,7 +16,7 @@ const WAYPOINTS = [
     year: "8c. AD",
     title: "The first town",
     body: "Roorkee began as the village stop on the pilgrim road to Haridwar. The Grand Trunk road brought its first trade.",
-    image: "https://images.unsplash.com/photo-1473445735015-694cb38a1fc7?w=1400&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1518002171953-a080ee817e1f?w=1400&auto=format&fit=crop&q=85",
   },
   {
     year: "1847",
@@ -40,7 +40,7 @@ const WAYPOINTS = [
     year: "today",
     title: "The corridor quietens",
     body: "Pilgrim traffic has moved to the four-lane expressway. The hotel stays. The town's relation with the river keeps the kitchen honest.",
-    image: "https://images.unsplash.com/photo-1561363846-12a7c5b5d8a7?w=1400&auto=format&fit=crop&q=85",
+    image: "https://images.unsplash.com/photo-1502139214982-d0ad755818d8?w=1400&auto=format&fit=crop&q=85",
   },
 ];
 
