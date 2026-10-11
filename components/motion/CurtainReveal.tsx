@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "motion/react";
-import { brand, hotel } from "@/lib/content";
+import { brand } from "@/lib/content";
+import Image from "next/image";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
@@ -13,12 +14,12 @@ if (typeof window !== "undefined") {
 /**
  * Palace-Doors curtain reveal.
  *
- * Desktop (lg+): two ornate side panels with rich content + a centred reveal.
- * Mobile (default): same animation, but only the brand seal, a small Hindi
- * wordmark, and the concierge line remain in the panels; the dense ledger and
- * pillar list drop out so the visible panels are not crammed.
+ * Each ornate door panel now carries a museum-style framed photograph in
+ * addition to the brand seal, heritage ledger, and concierge phone.
+ * The images fade in as the doors swing outward.
  *
- * Reduced motion: skip GSAP, just unhide the centre.
+ * Desktop (lg+): both framed images + full ledger + three pillars visible.
+ * Mobile: framed images + brand seal + concierge only.
  */
 export function CurtainReveal({
   children,
@@ -37,6 +38,7 @@ export function CurtainReveal({
       if (center) center.style.opacity = "1";
       const doors = sectionRef.current?.querySelectorAll<HTMLElement>(".curtain-left, .curtain-right");
       doors?.forEach((d) => (d.style.opacity = "0"));
+      sectionRef.current?.querySelectorAll<HTMLElement>(".curtain-image").forEach((el) => (el.style.opacity = "1"));
       return;
     }
     if (!sectionRef.current) return;
@@ -55,11 +57,15 @@ export function CurtainReveal({
         .fromTo(".curtain-right", { xPercent: 0 }, { xPercent: 110, ease: "power4.inOut" }, 0)
         .to(".curtain-trim-left", { scaleY: 0, ease: "power4.inOut", duration: 0.5 }, 0)
         .to(".curtain-trim-right", { scaleY: 0, ease: "power4.inOut", duration: 0.5 }, 0)
-        .to(".curtain-inner", { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.18)
-        .from(".curtain-inner .reveal-line", { y: 30, opacity: 0, duration: 0.6, stagger: 0.06, ease: "expo.out" }, 0.32)
-        .fromTo(".curtain-lotus", { opacity: 0, rotate: -8, scale: 0.92 }, { opacity: 1, rotate: 0, scale: 1, duration: 0.9, ease: "expo.out" }, 0.2)
-        .from(".curtain-stat > *", { y: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: "expo.out" }, 0.45)
-        .to(".curtain-lotus", { yPercent: -8, duration: 0.4, ease: "power3.out" }, 0.75);
+        // The framed panel images reveal right before the inner center, so they
+        // appear to be "what the doors are parting to reveal" momentarily.
+        .fromTo(".curtain-image-left", { scale: 0.86, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.08)
+        .fromTo(".curtain-image-right", { scale: 0.86, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.55, ease: "expo.out" }, 0.16)
+        .to(".curtain-inner", { opacity: 1, duration: 0.5, ease: "expo.out" }, 0.32)
+        .from(".curtain-inner .reveal-line", { y: 30, opacity: 0, duration: 0.6, stagger: 0.06, ease: "expo.out" }, 0.4)
+        .fromTo(".curtain-lotus", { opacity: 0, rotate: -8, scale: 0.92 }, { opacity: 1, rotate: 0, scale: 1, duration: 0.9, ease: "expo.out" }, 0.3)
+        .from(".curtain-stat > *", { y: 60, opacity: 0, duration: 0.7, stagger: 0.12, ease: "expo.out" }, 0.55)
+        .to(".curtain-lotus", { yPercent: -8, duration: 0.4, ease: "power3.out" }, 0.85);
     }, sectionRef);
     return () => ctx.revert();
   }, [reduce]);
@@ -86,7 +92,7 @@ export function CurtainReveal({
         }} aria-hidden="true" />
         <div className="absolute inset-0 jali opacity-50" aria-hidden="true" />
 
-        {/* Brass verticals - hidden on very small screens */}
+        {/* Brass verticals */}
         <div className="absolute inset-y-0 left-3 sm:left-8 w-px bg-gradient-to-b from-transparent via-gold/55 to-transparent hidden sm:block" aria-hidden="true" />
         <div className="absolute inset-y-0 right-3 sm:right-8 w-px bg-gradient-to-b from-transparent via-gold/55 to-transparent hidden sm:block" aria-hidden="true" />
         <div className="absolute left-0 right-0 top-[18%] md:top-[20%] h-px bg-gold/35" aria-hidden="true" />
@@ -94,7 +100,7 @@ export function CurtainReveal({
 
         <div className="curtain-trim-left absolute right-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-gold/0 via-gold-deep/70 to-gold/0 origin-top" aria-hidden="true" />
 
-        {/* Brand seal - scales on mobile */}
+        {/* Brand seal */}
         <div className="absolute top-6 sm:top-10 md:top-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 md:gap-4 px-2">
           <div className="scale-[0.55] sm:scale-[0.7] md:scale-100 origin-center">
             <BrandSeal />
@@ -104,28 +110,48 @@ export function CurtainReveal({
           </p>
         </div>
 
+        {/* Heritage framed image */}
+        <div className="curtain-image curtain-image-left absolute left-1/2 -translate-x-1/2 top-[28%] md:top-[24%] w-[55%] max-w-[260px] md:max-w-[280px] aspect-[4/5] rounded-[14px] overflow-hidden shadow-vanta ring-1 ring-gold-rule bg-cream">
+          <Image
+            src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=600&auto=format&fit=crop&q=80"
+            alt="Rajasthani palace archway, archival still"
+            fill
+            sizes="(min-width:768px) 280px, 220px"
+            className="object-cover cinematic mix-blend-multiply"
+          />
+          <div className="absolute inset-0 ring-1 ring-inset ring-gold/20 rounded-[14px]" aria-hidden="true" />
+          <div className="absolute left-2 bottom-2 right-2 flex items-end justify-between gap-2">
+            <span className="font-mono text-[7px] md:text-[8px] uppercase tracking-[0.22em] text-cream bg-ink-soft/65 backdrop-blur-sm px-2 py-1 rounded-full">
+              Plate I
+            </span>
+            <span className="font-mono text-[7px] md:text-[8px] uppercase tracking-[0.22em] text-gold-bright bg-ink-soft/65 backdrop-blur-sm px-2 py-1 rounded-full">
+              Heritage
+            </span>
+          </div>
+        </div>
+
         {/* Heritage ledger - hidden on mobile, shown on md+ */}
-        <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="hidden md:block absolute left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 w-full px-4">
           <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-soft/55 text-center mb-4">
             Chapter, since
           </p>
-          <div className="space-y-3 text-center">
+          <div className="space-y-2 text-center">
             {[
               { yr: "1998", note: "Opens" },
-              { yr: "2009", note: "Banquet lawns" },
+              { yr: "2009", note: "Lawns" },
               { yr: "2017", note: "Penthouse" },
-              { yr: "2022", note: "Rooftop pool" },
+              { yr: "2022", note: "Pool" },
               { yr: "2025", note: "Twenty-seven years" },
             ].map((m, i) => (
               <div key={i} className="flex items-baseline gap-2 justify-center">
-                <span className="font-display-serif text-xl md:text-2xl text-gold-deep">{m.yr}</span>
-                <span className="font-display-serif italic text-xs md:text-sm text-ink-soft/65">{m.note}</span>
+                <span className="font-display-serif text-xl text-gold-deep">{m.yr}</span>
+                <span className="font-display-serif italic text-xs text-ink-soft/65">{m.note}</span>
               </div>
             ))}
           </div>
         </div>
 
-        {/* Hindi wordmark at bottom - scales with viewport */}
+        {/* Hindi wordmark at bottom */}
         <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 text-center px-2">
           <p className="font-display-hindi text-3xl sm:text-5xl md:text-7xl text-ember leading-none">
             {brand.hindi}
@@ -158,7 +184,7 @@ export function CurtainReveal({
 
         <div className="curtain-trim-right absolute left-0 top-0 bottom-0 w-[2px] bg-gradient-to-b from-gold/0 via-gold-deep/70 to-gold/0 origin-top" aria-hidden="true" />
 
-        {/* Big motto - scales */}
+        {/* Motto at top */}
         <div className="absolute top-6 sm:top-10 md:top-12 left-1/2 -translate-x-1/2 text-center px-3 sm:px-6 md:px-8 w-[85%]">
           <p className="font-display-serif italic text-base sm:text-xl md:text-2xl text-ember leading-tight max-w-md mx-auto">
             “{brand.tagline}”
@@ -168,22 +194,42 @@ export function CurtainReveal({
           </p>
         </div>
 
+        {/* Penthouse framed image */}
+        <div className="curtain-image curtain-image-right absolute left-1/2 -translate-x-1/2 top-[28%] md:top-[24%] w-[55%] max-w-[260px] md:max-w-[280px] aspect-[4/5] rounded-[14px] overflow-hidden shadow-vanta ring-1 ring-gold-rule bg-cream">
+          <Image
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&auto=format&fit=crop&q=80"
+            alt="The Penthouse rooftop restaurant at Hotel Rajmahal"
+            fill
+            sizes="(min-width:768px) 280px, 220px"
+            className="object-cover cinematic mix-blend-multiply"
+          />
+          <div className="absolute inset-0 ring-1 ring-inset ring-gold/20 rounded-[14px]" aria-hidden="true" />
+          <div className="absolute left-2 bottom-2 right-2 flex items-end justify-between gap-2">
+            <span className="font-mono text-[7px] md:text-[8px] uppercase tracking-[0.22em] text-cream bg-ink-soft/65 backdrop-blur-sm px-2 py-1 rounded-full">
+              Plate II
+            </span>
+            <span className="font-mono text-[7px] md:text-[8px] uppercase tracking-[0.22em] text-gold-bright bg-ink-soft/65 backdrop-blur-sm px-2 py-1 rounded-full">
+              The Penthouse
+            </span>
+          </div>
+        </div>
+
         {/* Three pillars - hidden on mobile */}
-        <div className="hidden md:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div className="hidden md:block absolute left-1/2 top-[68%] -translate-x-1/2 -translate-y-1/2 w-full px-4">
           <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-ink-soft/55 text-center mb-4">
             The Maharaja's three pillars
           </p>
-          <div className="space-y-3 text-left">
+          <div className="space-y-2 text-left">
             {[
               { n: "I", t: "Highway", note: "NH-73 · km 58" },
               { n: "II", t: "Heritage", note: "Twenty-seven years" },
               { n: "III", t: "Hospitality", note: "Round the clock" },
             ].map((p) => (
-              <div key={p.n} className="flex items-center gap-3">
-                <span className="font-display-serif text-xl md:text-2xl text-gold-deep">{p.n}.</span>
+              <div key={p.n} className="flex items-center gap-3 justify-center">
+                <span className="font-display-serif text-xl text-gold-deep">{p.n}.</span>
                 <div className="text-left">
-                  <p className="font-display-serif text-base md:text-xl text-ink-soft leading-tight">{p.t}</p>
-                  <p className="font-mono text-[8px] md:text-[9px] uppercase tracking-[0.28em] md:tracking-[0.32em] text-ink-soft/50 mt-0.5 md:mt-1">{p.note}</p>
+                  <p className="font-display-serif text-base text-ink-soft leading-tight">{p.t}</p>
+                  <p className="font-mono text-[8px] uppercase tracking-[0.32em] text-ink-soft/50 mt-0.5">{p.note}</p>
                 </div>
               </div>
             ))}
