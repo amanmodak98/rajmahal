@@ -1,19 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { brand, navigation } from "@/lib/content";
 import { Wordmark } from "@/components/primitives/Wordmark";
-import { EASE } from "@/lib/motion";
+import { useParallaxY } from "@/lib/useParallax";
 
 export function Footer() {
   const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end end"],
-  });
-  const wordmarkY = useTransform(scrollYProgress, [0, 1], [80, -40]);
+  const wordmarkTransform = useParallaxY(ref, 40);
 
   return (
     <footer
@@ -28,16 +23,16 @@ export function Footer() {
         background: "linear-gradient(180deg, rgba(14,9,8,0) 0%, rgba(14,9,8,0.4) 100%)",
       }} aria-hidden="true" />
 
-      <div className="relative max-w-[1400px] mx-auto px-6 md:px-10 lg:px-14 pt-32 md:pt-48 pb-12">
-        <motion.div
-          style={{ y: wordmarkY }}
+      <div className="relative max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 lg:px-14 pt-32 md:pt-48 pb-12">
+        <div
           aria-hidden="true"
           className="absolute -top-10 left-1/2 -translate-x-1/2 pointer-events-none select-none"
+          style={{ transform: wordmarkTransform }}
         >
           <span className="font-display-serif text-[clamp(12rem,28vw,28rem)] leading-none text-gold/[0.06] tracking-tighter whitespace-nowrap">
             राज महल
           </span>
-        </motion.div>
+        </div>
 
         <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-10 md:gap-12 lg:gap-10">
           <div className="md:col-span-4">

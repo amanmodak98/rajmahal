@@ -2,8 +2,8 @@
 
 import clsx from "clsx";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
+import { useParallaxY } from "@/lib/useParallax";
 
 export function ImagePill({
   src,
@@ -23,27 +23,24 @@ export function ImagePill({
   priority?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [shiftRange, -shiftRange]);
+  const transform = useParallaxY(ref, shiftRange);
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      style={{ y }}
       className={clsx("relative overflow-hidden rounded-full shadow-vanta", className)}
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={width}
-        height={height}
-        priority={priority}
-        className="cinematic w-full h-full object-cover"
-      />
+      <div style={{ transform, willChange: "transform" }} className="w-full h-full">
+        <Image
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          priority={priority}
+          className="cinematic w-full h-full object-cover"
+        />
+      </div>
       <div className="absolute inset-0 vignette-warm" aria-hidden="true" />
-    </motion.div>
+    </div>
   );
 }

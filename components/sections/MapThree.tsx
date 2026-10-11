@@ -1,25 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
-import { hotel, navigation } from "@/lib/content";
+import { hotel } from "@/lib/content";
+import { useParallaxY } from "@/lib/useParallax";
 
-/**
- * Schematic location map: shows the hotel on NH-73 between Delhi and Dehradun,
- * and the three points of interest around it (Haridwar, Roorkee, IIT Roorkee).
- */
 export function MapThree() {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const transform = useParallaxY(ref, 40);
 
   return (
     <div ref={ref} className="relative w-full">
-      <motion.div style={{ y }} className="relative aspect-[16/9] max-w-5xl mx-auto rounded-[28px] border border-gold-rule bg-cream overflow-hidden shadow-vanta">
+      <div
+        style={{ transform, willChange: "transform" }}
+        className="relative aspect-[16/9] max-w-5xl mx-auto rounded-[28px] border border-gold-rule bg-cream overflow-hidden shadow-vanta"
+      >
         <svg viewBox="0 0 1000 540" className="absolute inset-0 w-full h-full" aria-hidden="true">
           <defs>
             <pattern id="topo" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -78,7 +73,7 @@ export function MapThree() {
             </text>
           </g>
         </svg>
-      </motion.div>
+      </div>
     </div>
   );
 }

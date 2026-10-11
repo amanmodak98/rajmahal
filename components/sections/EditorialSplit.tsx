@@ -2,9 +2,9 @@
 
 import Image from "next/image";
 import clsx from "clsx";
-import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 import { Pill } from "@/components/primitives/Pill";
+import { useParallaxY } from "@/lib/useParallax";
 
 export function EditorialSplit({
   eyebrow,
@@ -30,11 +30,7 @@ export function EditorialSplit({
   bg?: "parchment" | "cream" | "deep";
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const imgY = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const imgTransform = useParallaxY(ref, 40);
 
   const bgClass = clsx(
     bg === "parchment" && "bg-parchment",
@@ -53,7 +49,7 @@ export function EditorialSplit({
     >
       <div
         className={clsx(
-          "relative max-w-[1400px] mx-auto px-6 md:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center",
+          "relative max-w-[1400px] mx-auto px-5 sm:px-6 md:px-10 lg:px-14 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center",
           reversed && "lg:[&>*:first-child]:order-2"
         )}
       >
@@ -74,7 +70,9 @@ export function EditorialSplit({
         </div>
 
         <div className="lg:col-span-7 relative aspect-[4/5] lg:aspect-[6/7] rounded-[28px] overflow-hidden">
-          <motion.div style={{ y: imgY }} className="absolute -top-12 -bottom-12 left-0 right-0">
+          <div
+            style={{ transform: imgTransform, position: "absolute", inset: "-48px 0" }}
+          >
             <Image
               src={image}
               alt={imageAlt}
@@ -82,7 +80,7 @@ export function EditorialSplit({
               sizes="(min-width:1024px) 60vw, 100vw"
               className="cinematic object-cover"
             />
-          </motion.div>
+          </div>
           <div className="absolute inset-0 vignette-warm" aria-hidden="true" />
           <div className="absolute inset-0 ring-1 ring-inset ring-gold-rule rounded-[28px]" aria-hidden="true" />
         </div>
